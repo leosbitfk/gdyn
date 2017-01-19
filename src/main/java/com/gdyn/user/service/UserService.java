@@ -29,8 +29,11 @@ public class UserService  {
      /**
       * 根据id更新用户信息
       */
+//    public void updateUserinfo(Userinfo user){
+//    	int a=userDao.updateByPrimaryKey(user);
+//    }
     public void updateUserinfo(Userinfo user){
-    	int a=userDao.updateByPrimaryKey(user);
+    	int a=userDao.updateByPrimaryKeySelective(user);
     }
     /**
      * 获取所有用户信息

@@ -41,7 +41,7 @@ if (userName == null) {
 					 <a href="#">信息</a>
 				</li>
 				<li class="dropdown pull-right active">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">${username}<strong class="caret"></strong></a>
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">${sessionScope.user}<strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
 						<li>
 							 <a href="${pageContext.request.contextPath}/myuserinfo">我的信息</a>
@@ -64,16 +64,17 @@ if (userName == null) {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<form class="form" action="${pageContext.request.contextPath}/myuserinfo" method="post">
+			<form class="form" action="${pageContext.request.contextPath}/updateuserinfo" method="post">
 				<div class="form-group">
-					 <label for="id">id</label><input id="id" type="text" class="form-control" placeholder="${user.id }" />
+					 <label for="id">id</label><input id="id" name="changeId" type="text" class="form-control" placeholder="${user.id }" />
 				</div>
 				<div class="form-group">
-					 <label for="username">username</label><input id="username" type="text" class="form-control" placeholder="${user.username }" />
+					 <label for="username">username</label><input id="username" name="username" type="text" class="form-control" placeholder="${user.username }" />
 				</div>
 				<div class="form-group">
-					 <label for="email">email</label><input id="email" type="text" class="form-control" placeholder="${user.email }" />
+					 <label for="email">email</label><input id="email" name="email"type="text" class="form-control" placeholder="${user.email }" />
 				</div>
+				<div class="err text-warning">${error}</div>
 				</div> <button type="submit" class="btn btn-default">提交更改</button>
 			</form>
 		</div>

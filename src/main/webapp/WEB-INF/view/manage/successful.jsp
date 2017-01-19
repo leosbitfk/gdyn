@@ -41,7 +41,7 @@ if (userName == null) {
 					 <a href="#">信息</a>
 				</li>
 				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">${username}<strong class="caret"></strong></a>
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">${sessionScope.user}<strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
 						<li>
 							 <a href="${pageContext.request.contextPath}/myuserinfo">我的信息</a>

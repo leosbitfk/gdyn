@@ -72,6 +72,9 @@
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="changeId != null" >
+        id = #{changeId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>

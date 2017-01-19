@@ -8,6 +8,8 @@ public class Userinfo {
     private String password;
 
     private String email;
+    
+    private String changeId;
 
     public String getId() {
         return id;
@@ -40,4 +42,12 @@ public class Userinfo {
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
     }
+
+	public String getChangeId() {
+		return changeId;
+	}
+
+	public void setChangeId(String changeId) {
+		this.changeId = changeId;
+	}
 }
