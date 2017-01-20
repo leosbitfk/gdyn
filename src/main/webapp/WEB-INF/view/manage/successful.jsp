@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<!-- 
+	登陆成功后的首页
+ --> 
+    
 <%
 //对session进行判断，只有具有session权限的才能访问该页面。
 String userName = (String) session.getAttribute("user");
@@ -15,7 +19,7 @@ if (userName == null) {
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/nav.css">
 <!-- 可选的Bootstrap主题文件（一般不用引入） -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
@@ -47,7 +51,7 @@ if (userName == null) {
 							 <a href="${pageContext.request.contextPath}/myuserinfo">我的信息</a>
 						</li>
 						<li>
-							 <a href="#">用户管理</a>
+							 <a href="${pageContext.request.contextPath}/getrole">用户管理</a>
 						</li>
 						<li>
 							 <a href="#">更多设置</a>

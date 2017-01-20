@@ -11,14 +11,24 @@ import org.springframework.stereotype.Service;
 
 
 
+
+
 import com.gdyn.user.DAO.UserinfoDAO;
+import com.gdyn.user.roleDAO.UserRoleDAO;
+import com.gdyn.user.userRole.UserRole;
 import com.gdyn.user.userinfo.Userinfo;
 import com.gdyn.util.MD5;
-  
+  /**
+   * 此service处理关于用户信息的所有业务
+   * @author leo
+   *
+   */
 @Service("UserService")  
 public class UserService  {  
     @Autowired
     private UserinfoDAO userDao;  
+    @Autowired
+    private UserRoleDAO roleDAO;
     /**
      * 根据id获取用户
      * @param userId
@@ -49,5 +59,17 @@ public class UserService  {
     public void updatePassword(Userinfo record){
     	record.setPassword(MD5.getMd5(record.getPassword()));
     	int a=userDao.updateByPrimaryKey(record);
+    }
+    /**
+     * 根据id取权限
+     */
+    public UserRole getUserRoleById(String id){
+    	return this.roleDAO.selectByPrimaryKey(id);
+    }
+    /**
+     * 获取所有用户权限
+     */
+    public List<UserRole> getAllRole(){
+    	return this.roleDAO.selectAllRole();
     }
 }  

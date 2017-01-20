@@ -10,6 +10,8 @@ public class Userinfo {
     private String email=null;
     
     private String changeId=null;
+    
+    private String role=null;
 
     public String getId() {
         return id;
@@ -49,5 +51,13 @@ public class Userinfo {
 
 	public void setChangeId(String changeId) {
 		this.changeId = changeId;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

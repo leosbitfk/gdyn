@@ -32,7 +32,7 @@ public class controller {
 //		model.addAttribute("username", user.getUsername());
 //		model.addAttribute("email", user.getEmail());
 		model.addAttribute("user", user);
-		return"manage/myuserinfo";
+		return"manage/userinfo/myuserinfo";
 	}
 	/**
 	 * 对用户信息的更改
@@ -65,7 +65,7 @@ public class controller {
 			e.printStackTrace();
 			String error="id已存在";
 			model.addAttribute("error", error);
-			return "manage/myuserinfo";
+			return "manage/userinfo/myuserinfo";
 		}
 	}
 	/**
@@ -74,7 +74,7 @@ public class controller {
 	 */
 	@RequestMapping("/updatePassword")
 	public String updatePassword(){
-		return "manage/updatePassword";
+		return "manage/userinfo/updatePassword";
 	}
 	@RequestMapping("/password")
 	public String password(String Opassword,String Npassword,
@@ -85,10 +85,10 @@ public class controller {
 			System.out.println(user.getId());
 			service.updatePassword(user);
 			model.addAttribute("error", "更改成功");
-			return "manage/updatePassword";
+			return "manage/userinfo/updatePassword";
 		}else{
 			model.addAttribute("error", "原密码错误");
-			return "manage/updatePassword";
+			return "manage/userinfo/updatePassword";
 		}
 		
 	}
