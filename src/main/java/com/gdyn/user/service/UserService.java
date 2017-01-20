@@ -57,8 +57,10 @@ public class UserService  {
      * 根据用户id更改password
      */
     public void updatePassword(Userinfo record){
+    	if(record.getPassword()!=null){
     	record.setPassword(MD5.getMd5(record.getPassword()));
-    	int a=userDao.updateByPrimaryKey(record);
+    	}
+    	int a=userDao.updateByPrimaryKeySelective(record);
     }
     /**
      * 根据id取权限
@@ -71,5 +73,11 @@ public class UserService  {
      */
     public List<UserRole> getAllRole(){
     	return this.roleDAO.selectAllRole();
+    }
+    /**
+     * 根据id更改用户权限
+     */
+    public void updateRole(UserRole role){
+    	int a=this.roleDAO.updateByPrimaryKey(role);
     }
 }  

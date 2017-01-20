@@ -3,7 +3,7 @@
     
     <!-- 
 	用户信息管理页面
- 	-->
+ 	--> 
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -11,7 +11,7 @@
 String userName = (String) session.getAttribute("user");
 if (userName == null) {
    request.setAttribute("error", "请重新登陆");
-   RequestDispatcher rd = request.getRequestDispatcher("../account.jsp");
+   RequestDispatcher rd = request.getRequestDispatcher("../../account.jsp");
    rd.forward(request, response);
    }
 %>
@@ -108,7 +108,7 @@ if (userName == null) {
 							${user.role }
 						</td>
 						<td>
-						<a href="${pageContext.request.contextPath }/">修改</a>
+						<a href="${pageContext.request.contextPath }/updateUser?id=${user.id}">修改</a>
 						<a href="#">删除</a>
 						</td>
 					</tr>

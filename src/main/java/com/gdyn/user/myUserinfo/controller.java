@@ -59,6 +59,7 @@ public class controller {
 				User.setChangeId(null);
 			}
 			service.updateUserinfo(User);
+			session.setAttribute("user", User.getUsername());
 			return "redirect:/myuserinfo";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

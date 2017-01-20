@@ -10,7 +10,7 @@
 String userName = (String) session.getAttribute("user");
 if (userName == null) {
    request.setAttribute("error", "请重新登陆");
-   RequestDispatcher rd = request.getRequestDispatcher("../account.jsp");
+   RequestDispatcher rd = request.getRequestDispatcher("../../account.jsp");
    rd.forward(request, response);
    }
 %>

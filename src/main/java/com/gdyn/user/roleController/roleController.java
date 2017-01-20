@@ -1,6 +1,5 @@
 package com.gdyn.user.roleController;
 
-import java.security.Provider.Service;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -49,7 +48,39 @@ public class roleController {
 	//跳转到新的页面
 	@RequestMapping("updateUser")
 	public String update(String id,Model model){
-		model.addAttribute("user", userservice.getUserById(id));
+		Userinfo user=userservice.getUserById(id);
+		user.setRole(userservice.getUserRoleById(id).getRole());
+		model.addAttribute("user", user);
 		return "manage/userManage/updateUser";
+	}
+	//对数据库进行修改
+	@RequestMapping("updateInfo")
+	public String updateInfo(Userinfo user,Model model){
+		//在开始之前需要对空字符串进行转换
+		try {
+			System.out.println(user.getUsername());
+			if(user.getChangeId()==""){
+				user.setChangeId(null);
+			}
+			if(user.getEmail()==""){
+				user.setEmail(null);
+			}
+			if(user.getUsername()==""){
+				user.setUsername(null);
+			}
+			if(user.getPassword()==""){
+				user.setPassword(null);
+			}
+			userservice.updatePassword(user);//这个方法中有MD5转码，且能同时更新所有不为null的属性
+			UserRole role=userservice.getUserRoleById(user.getId());
+			role.setRole(user.getRole());
+			userservice.updateRole(role);
+			return "redirect:/getrole";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			model.addAttribute("err", "id已存在");
+			return "manage/userManage/updateUser";
+		}
 	}
 }
