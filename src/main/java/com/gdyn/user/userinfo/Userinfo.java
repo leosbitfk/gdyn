@@ -1,15 +1,15 @@
 package com.gdyn.user.userinfo;
 
 public class Userinfo {
-    private String id;
+    private String id=null;
 
-    private String username;
+    private String username=null;
 
-    private String password;
+    private String password=null;
 
-    private String email;
+    private String email=null;
     
-    private String changeId;
+    private String changeId=null;
 
     public String getId() {
         return id;

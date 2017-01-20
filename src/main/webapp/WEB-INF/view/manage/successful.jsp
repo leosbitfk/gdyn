@@ -47,7 +47,7 @@ if (userName == null) {
 							 <a href="${pageContext.request.contextPath}/myuserinfo">我的信息</a>
 						</li>
 						<li>
-							 <a href="#">设置栏目</a>
+							 <a href="#">用户管理</a>
 						</li>
 						<li>
 							 <a href="#">更多设置</a>

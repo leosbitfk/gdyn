@@ -23,12 +23,15 @@ if (userName == null) {
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<style>
+.nav-pills{background-color: #fffff0;font:bold;} 
+</style>
 <head>
 <title>我的信息</title>
 </head>
 <body>
 <div class="container">
-	<div class="row clearfix">
+	<div class="row clearfix ">
 		<div class="col-md-12 column">
 			<ul class="nav nav-pills">
 				<li >
@@ -64,20 +67,19 @@ if (userName == null) {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<form class="form" action="${pageContext.request.contextPath}/updateuserinfo" method="post">
+			<form class="form" action="${pageContext.request.contextPath}/password" method="post">
 				<div class="form-group">
-					 <label for="id">id</label><input id="id" name="changeId" type="text" class="form-control" placeholder="${user.id }" />
+					 <label for="Opassword">请输入原密码</label><input  name="Opassword" type="password" class="form-control" required autofocus/>
 				</div>
 				<div class="form-group">
-					 <label for="username">username</label><input id="username" name="username" type="text" class="form-control" placeholder="${user.username }" />
+					 <label for="Npassword">请输入新密码</label><input id="Npassword" name="Npassword" type="password" class="form-control" required/>
 				</div>
 				<div class="form-group">
-					 <label for="email">email</label><input id="email" name="email"type="text" class="form-control" placeholder="${user.email }" />
+					 <label for="Cpassword">请确认新密码</label><input id="Cpassword" name="Cpassword" type="password" class="form-control" required />
 				</div>
 				<div class="err text-warning">${error}</div>
 				</div> <button type="submit" class="btn btn-default">提交更改</button>
 			</form>
-			<a href="${pageContext.request.contextPath }/updatePassword"  class="btn">修改密码</a>
 		</div>
 	</div>
 </div>
@@ -85,20 +87,18 @@ if (userName == null) {
 <script type="text/javascript">
 $(function(){
 	$("button").click(function(event){
-		
-		if($("#id").val()!=""
-				||$("#username").val()!=""
-				||$("#email").val()!=""){
-			
-			var r=confirm("是否提交更改");
-			if(!r){
-				event.preventDefault();
-			}
-		}else{
+		if($("#Npassword").val()!=$("#Cpassword").val()){
 			event.preventDefault();
+			$(".err").text("两次输入不匹配");
+			$("#Npassword").val("");
+			$("#Cpassword").val("");
+		}if($("#Npassword").val()==$("Opassword").val()){
+			$(".err").text("新旧密码相同");
+			event.preventDefault();
+			$("#Npassword").val("");
+			$("#Opassword").val("");
 		}
-	});
+	})
 })
-
 </script>
 </html>

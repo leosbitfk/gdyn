@@ -11,6 +11,7 @@ if (userName == null) {
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -24,13 +25,13 @@ if (userName == null) {
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <head>
-<title>我的信息</title>
+<title>管理系统</title>
 </head>
 <body>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<ul class="nav nav-pills">
+			<ul class="nav nav-tabs">
 				<li >
 					 <a href="#">首页</a>
 				</li>
@@ -47,7 +48,7 @@ if (userName == null) {
 							 <a href="${pageContext.request.contextPath}/myuserinfo">我的信息</a>
 						</li>
 						<li>
-							 <a href="#">设置栏目</a>
+							 <a href="#">用户管理</a>
 						</li>
 						<li>
 							 <a href="#">更多设置</a>
@@ -60,45 +61,101 @@ if (userName == null) {
 					</ul>
 				</li>
 			</ul>
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<form class="form" action="${pageContext.request.contextPath}/updateuserinfo" method="post">
-				<div class="form-group">
-					 <label for="id">id</label><input id="id" name="changeId" type="text" class="form-control" placeholder="${user.id }" />
-				</div>
-				<div class="form-group">
-					 <label for="username">username</label><input id="username" name="username" type="text" class="form-control" placeholder="${user.username }" />
-				</div>
-				<div class="form-group">
-					 <label for="email">email</label><input id="email" name="email"type="text" class="form-control" placeholder="${user.email }" />
-				</div>
-				<div class="err text-warning">${error}</div>
-				</div> <button type="submit" class="btn btn-default">提交更改</button>
-			</form>
-			<a href="${pageContext.request.contextPath }/updatePassword"  class="btn">修改密码</a>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>
+							id
+						</th>
+						<th>
+							用户名
+						</th>
+						<th>
+							email
+						</th>
+						<th>
+							权限
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Default
+						</td>
+					</tr>
+					<tr class="success">
+						<td>
+							1
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							01/04/2012
+						</td>
+						<td>
+							Approved
+						</td>
+					</tr>
+					<tr class="error">
+						<td>
+							2
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							02/04/2012
+						</td>
+						<td>
+							Declined
+						</td>
+					</tr>
+					<tr class="warning">
+						<td>
+							3
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							03/04/2012
+						</td>
+						<td>
+							Pending
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							4
+						</td>
+						<td>
+							TB - Monthly
+						</td>
+						<td>
+							04/04/2012
+						</td>
+						<td>
+							Call in to confirm
+						</td>
+					</tr>
+				</tbody>
+			</table> <button type="button" class="btn btn-default">按钮</button>
 		</div>
 	</div>
 </div>
 </body>
-<script type="text/javascript">
-$(function(){
-	$("button").click(function(event){
-		
-		if($("#id").val()!=""
-				||$("#username").val()!=""
-				||$("#email").val()!=""){
-			
-			var r=confirm("是否提交更改");
-			if(!r){
-				event.preventDefault();
-			}
-		}else{
-			event.preventDefault();
-		}
-	});
-})
-
-</script>
 </html>

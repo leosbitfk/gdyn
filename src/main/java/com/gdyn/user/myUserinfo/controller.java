@@ -5,11 +5,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gdyn.user.service.UserService;
 import com.gdyn.user.userinfo.Userinfo;
+import com.gdyn.util.MD5;
 /**
  * 用户信息管理页面
  * @author leo
@@ -58,7 +58,6 @@ public class controller {
 			}else{
 				User.setChangeId(null);
 			}
-			System.out.println("1");
 			service.updateUserinfo(User);
 			return "redirect:/myuserinfo";
 		} catch (Exception e) {
@@ -67,6 +66,29 @@ public class controller {
 			String error="id已存在";
 			model.addAttribute("error", error);
 			return "manage/myuserinfo";
+		}
+	}
+	/**
+	 * 跳转到更改密码的网页
+	 * @return
+	 */
+	@RequestMapping("/updatePassword")
+	public String updatePassword(){
+		return "manage/updatePassword";
+	}
+	@RequestMapping("/password")
+	public String password(String Opassword,String Npassword,
+			Model model,HttpSession session){
+		Userinfo user=service.getUserById((String)session.getAttribute("id"));
+		if(user.getPassword().equals(MD5.getMd5(Opassword))){
+			user.setPassword(Npassword);
+			System.out.println(user.getId());
+			service.updatePassword(user);
+			model.addAttribute("error", "更改成功");
+			return "manage/updatePassword";
+		}else{
+			model.addAttribute("error", "原密码错误");
+			return "manage/updatePassword";
 		}
 		
 	}

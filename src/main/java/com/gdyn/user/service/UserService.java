@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 
 
+
 import com.gdyn.user.DAO.UserinfoDAO;
 import com.gdyn.user.userinfo.Userinfo;
+import com.gdyn.util.MD5;
   
 @Service("UserService")  
 public class UserService  {  
@@ -40,5 +42,12 @@ public class UserService  {
      */
     public List<Userinfo> queryAlluserinfo(){
     	return this.userDao.selectAllUser();
+    }
+    /**
+     * 根据用户id更改password
+     */
+    public void updatePassword(Userinfo record){
+    	record.setPassword(MD5.getMd5(record.getPassword()));
+    	int a=userDao.updateByPrimaryKey(record);
     }
 }  
