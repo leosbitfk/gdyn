@@ -26,7 +26,7 @@
     <!-- get method url encode -->  
 	<filter>  
     	<filter-name>getMethodEncodingFilter</filter-name>  
-    	<filter-class>com.common.filter.GetMethodEncodingFilter</filter-class>  
+    	<filter-class>com.gdyn.util.charsetFilter.GetMethodEncodingFilter</filter-class>  
 	</filter>  
 	<filter-mapping>  
    		<filter-name>encodingFilter</filter-name>  

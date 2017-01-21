@@ -48,6 +48,7 @@ public class roleController {
 	//跳转到新的页面
 	@RequestMapping("updateUser")
 	public String update(String id,Model model){
+		//通过页面传入的id获取用户信息，返回修改页
 		Userinfo user=userservice.getUserById(id);
 		user.setRole(userservice.getUserRoleById(id).getRole());
 		model.addAttribute("user", user);
@@ -55,7 +56,7 @@ public class roleController {
 	}
 	//对数据库进行修改
 	@RequestMapping("updateInfo")
-	public String updateInfo(Userinfo user,Model model){
+	public String updateInfo(Userinfo user,Model model,HttpSession session){
 		//在开始之前需要对空字符串进行转换
 		try {
 			System.out.println(user.getUsername());
@@ -71,10 +72,23 @@ public class roleController {
 			if(user.getPassword()==""){
 				user.setPassword(null);
 			}
-			userservice.updatePassword(user);//这个方法中有MD5转码，且能同时更新所有不为null的属性
+			//因为role和id是必定有数值传入，所以role可以每次更新
 			UserRole role=userservice.getUserRoleById(user.getId());
 			role.setRole(user.getRole());
 			userservice.updateRole(role);
+			//如果所有参数都为空，就直接跳转回用户列表，免得sql报错
+			if(user.getChangeId()==null
+					&&user.getEmail()==null
+					&&user.getUsername()==null
+					&&user.getPassword()==null){
+				return "redirect:/getrole";
+			}
+			userservice.updatePassword(user);//这个方法中有MD5转码，且能同时更新所有不为null的属性
+			//对当前用户进行判断，修改的是本人的信息，则需要修改当前页的session。
+			if(session.getAttribute("id").equals(user.getId())){
+				session.setAttribute("user", user.getUsername());
+				session.setAttribute("id", user.getId());
+			}
 			return "redirect:/getrole";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
