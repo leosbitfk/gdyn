@@ -94,7 +94,7 @@ if (userName == null) {
 					<label><input id="user" type="radio" name="role" value="user"/>user</label>
 					<label><input id="admin"type="radio" name="role" value="admin"/>admin</label>
 				</div>
-				<p class="err text-warning"></p>
+				<p class="err text-warning"> ${err}</p>
 				<button type="submit" class="btn btn-default">提交修改</button>
 			</form>
 		</div>
@@ -111,12 +111,12 @@ $(function(){
 			$("#com").val("");
 		}
 	})
-	if($("#user").val()=="user"){
+	if($("#user").val()=="${user.role}"){
 		$("#user").attr("checked","checked");
-		$("#admin").attr("checked","");
+		//$("#admin").attr("checked","");//只要设置了checked属性都会默认选中。
 	}else{
 		$("#admin").attr("checked","checked");
-		$("#user").attr("checked","");
+		//$("#user").attr("checked","");
 	}
 })
 </script>

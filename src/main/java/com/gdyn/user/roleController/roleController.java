@@ -47,11 +47,14 @@ public class roleController {
 	 */
 	//跳转到新的页面
 	@RequestMapping("updateUser")
-	public String update(String id,Model model){
+	public String update(String id,String err,Model model){
 		//通过页面传入的id获取用户信息，返回修改页
 		Userinfo user=userservice.getUserById(id);
 		user.setRole(userservice.getUserRoleById(id).getRole());
 		model.addAttribute("user", user);
+		if(err!=null){
+		model.addAttribute("err", "id已存在");
+		}
 		return "manage/userManage/updateUser";
 	}
 	//对数据库进行修改
@@ -93,8 +96,9 @@ public class roleController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			model.addAttribute("err", "id已存在");
-			return "manage/userManage/updateUser";
+			String err="id已存在";
+			//将参数拼接成url处理
+			return "redirect:/updateUser?id="+user.getId()+"&err="+err;
 		}
 	}
 }
